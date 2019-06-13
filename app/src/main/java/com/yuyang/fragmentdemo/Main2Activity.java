@@ -17,7 +17,8 @@ public class Main2Activity extends AppCompatActivity implements ViewPager.OnPage
     private FragmentTabHost mFragmentTabHost;
     private LayoutInflater mLayoutInflater;
     private Class fragmentArray[] = {Fragment1.class, Fragment2.class};
-private int t;
+    private int[] imageViewArray = {R.mipmap.sy1, R.}
+
 
 
 
@@ -29,6 +30,7 @@ private int t;
 
     @Override
     public void onTabChanged(String s) {
+        int position =
 
 
 
