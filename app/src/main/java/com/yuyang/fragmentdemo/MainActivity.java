@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btn_1, btn_2;
     private  int temp = 0;
+    Fragment fragment1, fragment2;
 
 
 
@@ -32,7 +33,12 @@ public class MainActivity extends AppCompatActivity {
 
         final ActivityFragment2 activityFragment2 = new ActivityFragment2();
 
-        replaceFragment(5);
+        if (fragment1 == null){
+            replaceFragment(5);
+        }
+
+
+
 
 
         btn_1 = findViewById(R.id.btn_change);
@@ -60,16 +66,22 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (temp%2==0){
 
-            Fragment fragment2 = new ActivityFragment2();
-            fragmentTransaction.replace(R.id.creativeFragment, fragment2);
-            fragmentTransaction.commit();
-            Log.e("temp=", temp +" ");
-        }else {
+            if (fragment2 == null){
+                fragment2 = new ActivityFragment2();
 
-            Fragment fragment1 = new ActivityFragment1();
+            }
+            fragmentTransaction.replace(R.id.creativeFragment, fragment2);
+
+            Log.e("temp=", temp +" ");
+
+        }else {
+            if (fragment1 == null){
+                fragment1 = new ActivityFragment1();
+            }
             fragmentTransaction.replace(R.id.creativeFragment, fragment1);
-            fragmentTransaction.commit();
             Log.e("temp=", temp +" ");
          }
+
+        fragmentTransaction.commit();
      }
 }

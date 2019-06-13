@@ -45,7 +45,7 @@ public class Main2Activity extends AppCompatActivity implements ViewPager.OnPage
     }
 
     private void initPage() {
-        Fragment fragment1 = new Fragment1();
+        Fragment fragment1 = Fragment1.newInstance("测试哈哈哈哈。。。。");
         Fragment fragment2 = new Fragment2();
 
         fragments.add(fragment1);
@@ -62,7 +62,7 @@ public class Main2Activity extends AppCompatActivity implements ViewPager.OnPage
         viewPager.setOnPageChangeListener(this);//设置页面切换时的监听器
         mLayoutInflater = LayoutInflater.from(this);
 
-        /*实例化FragmentTabHost对象并进行绑定*/
+        /*实例化FragmentTabHost对象并对ViewPager进行绑定*/
         mFragmentTabHost = findViewById(R.id.tabhost); //绑定tabhost
         mFragmentTabHost.setup(this, getSupportFragmentManager(), R.id.pager); ////绑定viewpager
 
@@ -71,6 +71,7 @@ public class Main2Activity extends AppCompatActivity implements ViewPager.OnPage
         mFragmentTabHost.setOnTabChangedListener(this);
 
         int count = textViewarray.length;
+
         /*新建Tabspec选项卡并设置Tab菜单栏的内容和绑定对应的Fragment*/
         for (int i=0; i < count; i++){
             //给每个Tab设置标签、图标及文字
@@ -80,16 +81,10 @@ public class Main2Activity extends AppCompatActivity implements ViewPager.OnPage
             mFragmentTabHost.addTab(tabSpec, fragmentArray[i], null);
             mFragmentTabHost.setTag(i);
             mFragmentTabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.selector_tab_background);
-
         }
-
-
     }
 
-
-
-
-    private View getTabItemView(int i){
+     private View getTabItemView(int i){
         //将xml 布局转化为View对象
         View view = mLayoutInflater.inflate(R.layout.tab_content, null);
         //
@@ -107,6 +102,7 @@ public class Main2Activity extends AppCompatActivity implements ViewPager.OnPage
         int position = mFragmentTabHost.getCurrentTab();
         viewPager.setCurrentItem(position); //把选中的Tab 的位置赋给视频日期，让他控制页面切换
     }
+
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
